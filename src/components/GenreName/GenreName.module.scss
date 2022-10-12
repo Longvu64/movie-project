@@ -1,0 +1,14 @@
+.genre{
+    padding: 1rem;
+    margin-top: 1rem;
+    border: 1px solid #fff;
+    &:hover{
+        color: #000;
+        cursor: pointer;
+        background-color: #ccc;
+    }
+}
+
+.genre +.genre{
+    margin-left: 0.8rem;
+}

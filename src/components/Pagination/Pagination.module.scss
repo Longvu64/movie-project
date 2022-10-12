@@ -1,0 +1,26 @@
+.pagination{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+}
+
+.page-number{
+    padding: 1rem;
+    margin: 1rem;
+    background-color: rgba(255,255,255,0.5);
+    cursor: pointer;
+}
+
+.arrow{
+    font-size: 4rem;
+    cursor: pointer;
+}
+
+.red{
+    background-color: red;
+}
+
+.active{
+    transform: scale(1.2);
+}

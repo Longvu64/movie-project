@@ -1,0 +1,50 @@
+
+.left, .right{
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #fff;
+    font-size: 7rem;
+    font-weight: 900;
+    cursor: pointer;
+    z-index: 10;
+}
+
+.left{
+    left: var(--position-absolute);
+}
+.right{
+    right: var(--position-absolute);
+}
+
+.watch-btn{
+    padding: 1rem 2rem;
+    border-radius: 4px;
+    // margin-top: 2rem !important;
+    font-size: 1.8rem;
+    background-color: #fff;
+    outline: none;
+    color: #000;
+    border: none;
+    &:hover{
+        opacity: 0.75;
+        color:#000;
+        cursor: pointer;
+    }
+}
+@media (max-width:550px) {
+    .left{
+        left: var(--position-absolute);
+    }
+    .right{
+        right: var(--position-absolute);
+    }
+  }
+  @media (min-width: 551px) and (max-width:850px){
+    .left{
+        left: var(--position-absolute);
+    }
+    .right{
+        right: var(--position-absolute);
+    }
+  }

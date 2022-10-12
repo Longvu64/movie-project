@@ -1,0 +1,27 @@
+.banner{
+    margin: 5rem 0;
+    padding: 0 var(--main-layout-padding);
+    // position: relative;
+}
+
+.banner-title{
+    color : #fff;
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+}
+
+.swiper{
+    width: 20% ;
+}
+
+@media (max-width:550px) {
+    .swiper{
+        width: 50% ;
+    }
+}
+
+@media (min-width: 551px) and (max-width:850px){
+    .swiper{
+        width: 35% ;
+    }
+}

@@ -1,0 +1,42 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root{
+  --main-layout-padding: 5rem;
+  --position-absolute: 5rem;
+}
+
+html{
+  font-size: 62.5%;
+}
+
+body {
+  font-size: 1.6rem;
+  background-color: #1a1a1a;
+}
+a{
+  text-decoration: none;
+    color: #fff;
+    font-size: 1.8rem;  
+    &:hover{
+        color: rgba(255, 255, 255,0.7);
+        cursor: pointer;
+    }
+}
+
+@media (max-width:550px) {
+  :root{
+    --main-layout-padding: 1rem;
+    --position-absolute: 1rem;
+  }
+}
+@media (min-width: 551px) and (max-width:850px){
+  :root{
+    --main-layout-padding: 1rem;
+    --position-absolute: 3rem;
+  }
+}
+
