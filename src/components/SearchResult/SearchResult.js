@@ -27,10 +27,9 @@ function SearchResult({movieName}) {
   
   return (
     <div className={cx("wrapper")}>
-      <h1 className={cx("title")}>Result for {context.movieName}</h1>
+      <h1 className={cx("title")}>{searchApi.length > 0 ? `Result for ${context.movieName}` : `No result for ${context.movieName}`}</h1>
       <div className={cx("container")}>
-        {searchApi &&
-          searchApi.map((item, id) => {
+        {searchApi &&searchApi.map((item, id) => {
             return (<MovieCards key={id} item={item}/>);
           })}
       </div>
