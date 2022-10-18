@@ -29,12 +29,7 @@ function Pagination({ getPage, genreId, page }) {
     setIndex(1);
     getPage(1);
   }, [genreId]);
-  if(page>500){
-    getPage(500)
-  }
-  if(page<1){
-    getPage(1)
-  }
+  
   return (
     <Fragment>
       {index < 4 && index >= 0 && (
