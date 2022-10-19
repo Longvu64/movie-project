@@ -5,6 +5,7 @@ import GenrePage from "./pages/GenrePage/GenrePage";
 import SearchPage from "./pages/SearchPage/SearchPage";
 import Header from "./components/Header/Header";
 import WatchPage from "./pages/WatchPage/WatchPage";
+import ScrollToTop from "./components/ScrollToTop/ScrollToTop";
 
 document.title= ' Movie'
 export const MovieIdContext = createContext()
@@ -61,6 +62,7 @@ const context= {
   return (
     <Fragment>
       <Router>
+        <ScrollToTop/>
       <MovieIdContext.Provider value={context}>
         <Header type={type} 
                 handleTypeMovie={handleTypeMovie} 

@@ -138,7 +138,7 @@ function Header({
               <p className={cx("header-nav-item-mobile")}>Genres</p>
             </Tippy>
           </nav>
-          <p className={cx("sign-in-mobile")}>Sign in</p>
+          {/* <p className={cx("sign-in-mobile")}>Sign in</p> */}
         </div>
       </div>
       {/* Mobile nav */}
@@ -293,7 +293,7 @@ function Header({
               className={isSearch ? cx("input-area") : cx("display-none")}
             />
           </div>
-          <p className={cx("sign-in")}>Sign in</p>
+          {/* <p className={cx("sign-in")}>Sign in</p> */}
         </div>
       </header>
     </Fragment>
