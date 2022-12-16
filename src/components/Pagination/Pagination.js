@@ -10,7 +10,7 @@ import PageLink from "../PageLink/PageLink";
 const cx = className.bind(styles);
 const pageNumber = [1, 2, 3, 4, 5, 6];
 
-function Pagination({ getPage, genreId, page }) {
+function Pagination() {
   const context = useContext(MovieIdContext);
   let [index, setIndex] = useState(1);
   const getIndex = (ind) => {
@@ -27,18 +27,18 @@ function Pagination({ getPage, genreId, page }) {
   }
   useEffect(() => {
     setIndex(1);
-    getPage(1);
-  }, [genreId]);
+    context.getPage(1);
+  }, [context.genreId]);
   
   return (
     <Fragment>
       {index < 4 && index >= 0 && (
         <div className={cx("pagination")}>
-          <Link to={page > 1 ? `/type=${context.type}/genre=${context.genreId}/page=${Number(page) - 1 }`: undefined}>
+          <Link to={context.page > 1 ? `/type=${context.type}/genre=${context.genreId}/page=${Number(context.page) - 1 }`: undefined}>
             <RiArrowLeftSLine
               onClick={() => {
                 setIndex(Number(index) - 1);
-                getPage(index - 1);
+                context.getPage(index - 1);
               }}
               className={cx("arrow")}
             />
@@ -54,11 +54,11 @@ function Pagination({ getPage, genreId, page }) {
               </PageLink>
             );
           })}
-          <Link to={`/type=${context.type}/genre=${context.genreId}/page=${Number(page) + 1}`}>
+          <Link to={`/type=${context.type}/genre=${context.genreId}/page=${Number(context.page) + 1}`}>
             <RiArrowRightSLine
               onClick={() => {
                 setIndex(Number(index) + 1);
-                getPage(Number(index) + 1);
+                context.getPage(Number(index) + 1);
               }}
               className={cx("arrow")}
             />
@@ -67,11 +67,11 @@ function Pagination({ getPage, genreId, page }) {
       )}
       {index > 3 && index < 498 && (
         <div className={cx("pagination")}>
-          <Link to={`/type=${context.type}/genre=${context.genreId}/page=${Number(page) - 1}`}>
+          <Link to={`/type=${context.type}/genre=${context.genreId}/page=${Number(context.page) - 1}`}>
             <RiArrowLeftSLine
               onClick={() => {
                 setIndex(index - 1);
-                getPage(index - 1);
+                context.getPage(index - 1);
               }}
               className={cx("arrow")}
             />
@@ -93,11 +93,11 @@ function Pagination({ getPage, genreId, page }) {
           <PageLink className={cx("page-number")} getIndex={getIndex}>
             500
           </PageLink>
-          <Link to={`/type=${context.type}/genre=${context.genreId}/page=${Number(page) + 1}`}>
+          <Link to={`/type=${context.type}/genre=${context.genreId}/page=${Number(context.page) + 1}`}>
             <RiArrowRightSLine
               onClick={() => {
                 setIndex(index + 1);
-                getPage(index + 1);
+                context.getPage(index + 1);
               }}
               className={cx("arrow")}
             />
@@ -106,11 +106,11 @@ function Pagination({ getPage, genreId, page }) {
       )}
       {index >= 498 && index <= 500 && (
         <div className={cx("pagination")}>
-          <Link to={`/type=${context.type}/genre=${context.genreId}/page=${Number(page) - 1}`}>
+          <Link to={`/type=${context.type}/genre=${context.genreId}/page=${Number(context.page) - 1}`}>
             <RiArrowLeftSLine
               onClick={() => {
                 setIndex(index - 1);
-                getPage(index - 1);
+                context.getPage(index - 1);
               }}
               className={cx("arrow")}
             />
@@ -131,11 +131,11 @@ function Pagination({ getPage, genreId, page }) {
           <PageLink className={cx("page-number")} getIndex={getIndex}>
             500
           </PageLink>
-          <Link to={page < 500 ? `/type=${context.type}/genre=${context.genreId}/page=${Number(page) + 1}` : undefined}>
+          <Link to={context.page < 500 ? `/type=${context.type}/genre=${context.genreId}/page=${Number(context.page) + 1}` : undefined}>
             <RiArrowRightSLine
               onClick={() => {
                 setIndex(index + 1);
-                getPage(index + 1);
+                context.getPage(index + 1);
               }}
               className={cx("arrow")}
             />

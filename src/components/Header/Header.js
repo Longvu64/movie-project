@@ -10,18 +10,10 @@ import { MovieIdContext } from "../../App";
 
 const cx = className.bind(styles);
 
-function Header({
-  handleTypeMovie,
-  handleTypeTv,
-  type,
-  onGetGenre,
-  getMovieName,
-}) {
+function Header() {
   const inputRef = useRef();
   const navigate = useNavigate();
-
   const context = useContext(MovieIdContext);
-  console.log(context.type);
   const [searchInput, setSearchInput] = useState("");
   const [isMenu, setIsMenu] = useState(false);
   const [isSearch, setIsSearch] = useState(false);
@@ -30,14 +22,13 @@ function Header({
 
   useEffect(() => {
     request
-      .get(`genre/${type}/list`, {
+      .get(`genre/${context.type}/list`, {
         params: {
           api_key: "19f84e11932abbc79e6d83f82d6d1045",
         },
       })
       .then((data) => setGenres(data.genres));
-  }, [type]);
-  console.log(type);
+  }, [context.type]);
   searchInputZone &&
     document.addEventListener("click", (event) => {
       const isClickInside = searchInputZone.contains(event.target);
@@ -91,18 +82,18 @@ function Header({
             </Link>
             <Link
               to="/"
-              className={cx("header-nav-item-mobile")}
+              className={cx("header-nav-item-mobile",{active: context.type === 'movie'})}
               onClick={() => {
-                handleTypeMovie();
+                context.handleTypeMovie();
               }}
             >
               Movies
             </Link>
             <Link
               to="/"
-              className={cx("header-nav-item-mobile")}
+              className={cx("header-nav-item-mobile",{active: context.type === 'tv'})}
               onClick={() => {
-                handleTypeTv();
+                context.handleTypeTv();
               }}
             >
               TV Shows
@@ -110,7 +101,6 @@ function Header({
             <Tippy
               interactive
               offset={[20, -180]}
-              // visible
               placement="right-start"
               render={(attrs) => (
                 <ul className={cx("genres-list")} tabIndex="-1" {...attrs}>
@@ -122,7 +112,7 @@ function Header({
                             to={`/type=${context.type}/genre=${genre.id}/page=1`}
                             className={cx("genres-list-item-link")}
                             onClick={() => {
-                              onGetGenre(genre.id);
+                              context.getGenre(genre.id);
                               context.getPage(1);
                               context.getGenreName(genre.name);
                             }}
@@ -160,12 +150,12 @@ function Header({
           </Link>
           <Link
             to="/"
-            className={cx("header-nav-item")}
-            onClick={handleTypeMovie}
+            className={cx("header-nav-item",{active: context.type === 'movie' || !context.type})}
+            onClick={() => context.handleTypeMovie()}
           >
             Movies
           </Link>
-          <Link to="/" className={cx("header-nav-item")} onClick={handleTypeTv}>
+          <Link to="/" className={cx("header-nav-item",{active: context.type === 'tv'})} onClick={context.handleTypeTv}>
             TV Shows
           </Link>
           <Tippy
@@ -181,7 +171,7 @@ function Header({
                           to={`/type=${context.type}/genre=${genre.id}/page=1`}
                           className={cx("genres-list-item-link")}
                           onClick={() => {
-                            onGetGenre(genre.id);
+                            context.getGenre(genre.id);
                             context.getPage(1);
                             context.getGenreName(genre.name);
                           }}
@@ -210,15 +200,15 @@ function Header({
               </Link>
               <Link
                 to="/"
-                className={cx("header-nav-item")}
-                onClick={handleTypeMovie}
+                className={cx("header-nav-item",{active: context.type === 'movie'})}
+                onClick={context.handleTypeMovie}
               >
                 Movies
               </Link>
               <Link
                 to="/"
-                className={cx("header-nav-item")}
-                onClick={handleTypeTv}
+                className={cx("header-nav-item",{active: context.type === 'tv'})}
+                onClick={context.handleTypeTv}
               >
                 TV Shows
               </Link>
@@ -235,7 +225,7 @@ function Header({
                               to={`/type=${context.type}/genre=${genre.id}/page=1`}
                               className={cx("genres-list-item-link")}
                               onClick={() => {
-                                onGetGenre(genre.id);
+                                context.getGenre(genre.id);
                                 context.getPage(1);
                                 context.getGenreName(genre.name);
                               }}
@@ -278,7 +268,7 @@ function Header({
                   `/type=${context.type}/search=${searchInput}`
                 }
                 onClick={() => {
-                  isSearch && searchInput !== "" && getMovieName(searchInput);
+                  isSearch && searchInput !== "" && context.getMovieName(searchInput);
                   setSearchInput("");
                 }}
               >

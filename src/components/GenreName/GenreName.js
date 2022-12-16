@@ -7,7 +7,7 @@ import {MovieIdContext} from "../../App"
 
 const cx = className.bind(styles);
 
-function GenreName({item, idArray, onGetGenre}) {
+function GenreName({item, idArray}) {
   const context = useContext(MovieIdContext)
   const [pageLink, setPageLink] = useState(context.page)
   const [genreIdLink, setGenreIdLink] = useState(context.genreId)

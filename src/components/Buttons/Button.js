@@ -34,10 +34,14 @@ export  function SlidePrevButtonSwiper() {
   );
 }
 
-export function WatchButton({onClick, item}) {
+export function WatchButton({onClick, item, watch}) {
   const context = useContext(MovieIdContext);
 
   return (
-    <Link to={`/type=${context.type}/id=${item}`} onClick={onClick} className={cx("watch-btn")}>Watch now</Link>
+    <Link to={!watch ? `/type=${context.type}/id=${item}` : (
+      context.type === 'tv' ? `/watch/type=${context.type}/id=${context.movieId}/s=${1}/e=${1}` : `/watch/type=${context.type}/id=${context.movieId}`)} 
+      onClick={onClick} 
+      className={cx("watch-btn")}
+      >Watch now</Link>
   )
 }

@@ -1,13 +1,13 @@
-import { Fragment } from "react";
+import { Fragment, useContext } from "react";
 import Banner from "../../components/Banner/Banner";
 import BannerSeries from "../../components/BannerSeries/BannerSeries";
-import Header from "../../components/Header/Header";
+import { MovieIdContext } from "../../App";
 
 const bannerSeriesList = [
     {
-        serieMovie: 'top_rated',
-        serieTv: 'top_rated',
-        title: 'Top rated',
+        serieMovie: 'upcoming',
+        serieTv: 'airing_today',
+        title: 'Latest',
     },
     {
         serieMovie: 'popular',
@@ -15,24 +15,20 @@ const bannerSeriesList = [
         title: 'Popular'
     },
     {
-        serieMovie: 'now_playing',
-        serieTv: 'airing_today',
-        title: 'Now Playing'
+        serieMovie: 'top_rated',
+        serieTv: 'top_rated',
+        title: 'Top Rated'
     },
 ]
-function Home({ handleTypeMovie, handleTypeTv, type, onGetGenre, getMovieId }) {
+function Home() {
+
+    const context = useContext(MovieIdContext);
     return ( 
         <Fragment>
-            {/* <Header 
-                handleTypeMovie={handleTypeMovie} 
-                handleTypeTv={handleTypeTv} 
-                type={type}
-                onGetGenre={onGetGenre}
-            /> */}
-            <Banner  onGetGenre={onGetGenre} type={type}/>
+            <Banner/>
             {bannerSeriesList.map((serie,id) => {
                 return (
-                    <BannerSeries data={serie} key={id} getMovieId={getMovieId} type={type}/>
+                    <BannerSeries data={serie} key={id}/>
                 )
             })}
         </Fragment>

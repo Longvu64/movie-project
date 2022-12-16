@@ -1,8 +1,8 @@
 import SearchResult from "../../components/SearchResult/SearchResult";
 
-function SearchPage({movieName}) {
+function SearchPage() {
     return ( 
-        <SearchResult movieName={movieName}/>
+        <SearchResult/>
      );
 }
 

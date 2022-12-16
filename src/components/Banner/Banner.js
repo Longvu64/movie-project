@@ -6,15 +6,14 @@ import { MovieIdContext } from "../../App";
 import {SlideNextButton,SlidePrevButton, WatchButton} from "../Buttons/Button";
 import * as request from "../../config";
 import GenreName from "../GenreName/GenreName";
-import { Link, useParams } from "react-router-dom";
 
 const cx = className.bind(styles);
 
-function Banner({type, page, genreId, onGetGenre}) {
+function Banner() {
   const context = useContext(MovieIdContext);
-
   const [movieApi, setMovieApi] = useState([]);
   const [index, setIndex] = useState(0);
+
   const handleNextBanner = () => {
     setIndex((prev) => prev + 1);
   };
@@ -23,7 +22,7 @@ function Banner({type, page, genreId, onGetGenre}) {
   };
   useEffect(() => {
     request
-      .get(`trending/${type}/day`, {
+      .get(`trending/${context.type}/day`, {
         params: {
           api_key: "19f84e11932abbc79e6d83f82d6d1045",
         },
@@ -31,8 +30,7 @@ function Banner({type, page, genreId, onGetGenre}) {
       .then((res) => {
         setMovieApi(res.results);
       });
-  }, [type]);
-console.log(type);
+  }, [context.type]);
   
   return (
     <div className={cx("banner")}>
@@ -63,7 +61,7 @@ console.log(type);
                 <p className={cx("movie-name")}>{item.title || item.name}</p>
                 <div className={cx("genres")}>
                  
-                  <GenreName onGetGenre={onGetGenre} page={page} genreId={genreId} type={type} item={item}/>
+                  <GenreName item={item}/>
                 </div>
                 <WatchButton onClick={() => context.getMovieId(item.id)} item={item.id}/>
               </div>

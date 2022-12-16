@@ -39,12 +39,16 @@
 }
 
 .header-nav-item{
-    font-size: 1.8rem;
+    font-size: 2rem;
     transition: all 0.4s;
     cursor: pointer;
+    color: #b3b3b3;
+    &.active{
+        color: #fff;
+    }
 
     &:hover{
-        color: #b3b3b3;
+        opacity: 0.7;
     }
 }
 
@@ -214,8 +218,13 @@
         font-size: 2rem;
         cursor: pointer;
         display: inline;
+        color: #b3b3b3;
+        &.active{
+            color: #fff;
+        }
+
         &:hover{
-            color: #b3b3b3;
+            opacity: 0.7;
         }
     }
     

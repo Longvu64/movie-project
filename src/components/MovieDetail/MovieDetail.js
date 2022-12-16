@@ -9,16 +9,16 @@ import { useParams } from "react-router-dom";
 
 const cx = className.bind(styles);
 
-function MovieDetail({type}) {
+function MovieDetail() {
   const context = useContext(MovieIdContext);
   const [movieIdApi, setMovieIdApi] = useState([]);
   const [castApi, setCastApi] = useState([]);
   const [videoApi, setVideoApi] = useState([]);
   context.movieId = useParams().movieIdURL
-  type = useParams().typeURL
+  context.type = useParams().typeURL
   useEffect(() => {
     request
-      .get(`/${type}/${context.movieId}`, {
+      .get(`/${context.type || 'movie'}/${context.movieId}`, {
         params: {
           api_key: "19f84e11932abbc79e6d83f82d6d1045",
         },
@@ -53,6 +53,7 @@ function MovieDetail({type}) {
     <div className={cx("detail")}>
       <div className={cx("background")}>
         <img
+          alt='poster'
           className={cx("img-backdrop")}
           src={`https://image.tmdb.org/t/p/original${movieIdApi.backdrop_path}`}
         />
@@ -61,10 +62,11 @@ function MovieDetail({type}) {
       <div className={cx("movie-info")}>
         <img
           className={cx("img-poster")}
+          alt='poster'
           src={`https://image.tmdb.org/t/p/original${movieIdApi.poster_path}`}
         />
-        <h1 className={cx("movie-name")}>{movieIdApi.title}</h1>
-        <WatchButton />
+        <h1 className={cx("movie-name")}>{movieIdApi.title || movieIdApi.name}</h1>
+        <WatchButton watch/>
 
         <div className={cx("genres")}>
           <GenreName idArray={idArray} />
@@ -98,6 +100,7 @@ function MovieDetail({type}) {
               <div key={id} className={cx("cast-item")}>
                 <img
                   className={cx("cast-img")}
+                  alt='poster'
                   src={`https://image.tmdb.org/t/p/original${item.profile_path}`}
                 />
                 <p className={cx("cast-name")}>{item.name}</p>

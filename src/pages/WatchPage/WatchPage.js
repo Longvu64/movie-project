@@ -1,7 +1,10 @@
-import MovieDetail from "../../components/MovieDetail/MovieDetail";
+import React from 'react'
+import Watch from '../../components/Watch/Watch'
 
-function WatchPage({type}) {
-    return ( <MovieDetail type={type}/> );
+const WatchPage = () => {
+  return (
+    <Watch></Watch>
+  )
 }
 
-export default WatchPage;
+export default WatchPage
